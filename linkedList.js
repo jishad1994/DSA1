@@ -155,8 +155,8 @@ class LinkedList {
     }
 }
 
-const myLinkedList = new LinkedList();
 
+const myLinkedList = new LinkedList();
 myLinkedList.append("first");
 myLinkedList.append("second");
 myLinkedList.append("third");
