@@ -125,9 +125,79 @@
 //     }
 // }
 
-
 // let array2=[11,12,13,14];
 
 // const dList=DoublyLinkedList.fromArray(array2);
 // dList.display();
 
+//delete the duplicates nodes from the linked list
+
+const Node = function (data) {
+    this.data = data;
+    this.next = null;
+};
+
+class Linkedlist {
+    constructor() {
+        this.head = null;
+        this.size = 0;
+    }
+    //append node
+
+    append(data) {
+        const node = new Node(data);
+        let currentNode = this.head;
+        if (this.head == null) {
+            this.head = node;
+        } else {
+            while (currentNode.next) {
+                currentNode = currentNode.next;
+            }
+            currentNode.next = node;
+        }
+    }
+
+    //display
+
+    display() {
+        let currentNode = this.head;
+        let nodeString = "";
+
+        while (currentNode) {
+            nodeString += currentNode.data + "->";
+            currentNode = currentNode.next;
+        }
+        console.log(nodeString + null);
+    }
+
+    //remove duplicates
+
+    removeDuplicates() {
+        let currentNode = this.head;
+        while (currentNode.next) {
+            if (currentNode.data === currentNode.next.data) {
+                currentNode.next = currentNode.next.next;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+    }
+
+    //convert array into a linkedlist
+
+    static fromArray(array) {
+        const list = new Linkedlist();
+        for (const ele of array) {
+            list.append(ele);
+        }
+        return list;
+    }
+}
+
+
+const array=[1,2,3,3,4,5,6,6,7,8,9,9];
+
+const mylist= Linkedlist.fromArray(array);
+mylist.display();
+mylist.removeDuplicates();
+mylist.display();
